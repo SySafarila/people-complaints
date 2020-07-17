@@ -25,6 +25,18 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <a href="{{ route('complaints.index') }}" class="btn btn-success shadow-sm">Click Here !</a>
                         </div>
+                        <a href="{{ route('complaints.complete') }}" class="text-muted">Complete</a>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $complete % 100 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="{{ route('complaints.onProcess') }}" class="text-muted">On Process</a>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $onProcess % 100 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="{{ route('complaints.index') }}" class="text-muted">Pending</a>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $pending % 100 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>

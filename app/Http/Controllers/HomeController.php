@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Complaint;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $pending = Complaint::where('status', 'pending')->count();
+        $onProcess = Complaint::where('status', 'on process')->count();
+        $complete = Complaint::where('status', 'complete')->count();
+        return view('dashboard', [
+            'pending' => $pending,
+            'onProcess' => $onProcess,
+            'complete' => $complete
+        ]);
     }
 }

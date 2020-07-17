@@ -32,7 +32,7 @@
                                 <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                                 <span class="badge badge-pill @if($complaint->status == 'complete') badge-success @else badge-dark @endif">{{ $complaint->status }}</span>
                             </div>
-                            @if (!Auth::user()->level == 'public')
+                            @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                                 <small class="m-0 text-muted">Reporter : {{ $complaint->user->name }}</small>
                             @endif
                         </div>
