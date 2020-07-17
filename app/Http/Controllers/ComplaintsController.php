@@ -22,7 +22,7 @@ class ComplaintsController extends Controller
     public function index()
     {
         if (Auth::user()->level == 'public') {
-            $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
+            $complaints = Complaint::where(['user_id' => Auth::user()->id, 'status' => 'pending'])->paginate(10);
             return view('complaints.index', ['complaints' => $complaints]);
         }
 
@@ -37,6 +37,9 @@ class ComplaintsController extends Controller
         if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
             $complaints = Complaint::where('status', 'on process')->paginate(10);
             return view('complaints.advanced.indexOnProcess', ['complaints' => $complaints]);
+        } else {
+            $complaints = Complaint::where(['status' => 'on process', 'user_id' => Auth::user()->id])->paginate(10);
+            return view('complaints.advanced.indexOnProcess', ['complaints' => $complaints]);
         }
     }
 
@@ -44,6 +47,9 @@ class ComplaintsController extends Controller
     {
         if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
             $complaints = Complaint::where('status', 'complete')->paginate(10);
+            return view('complaints.advanced.indexComplete', ['complaints' => $complaints]);
+        } else {
+            $complaints = Complaint::where(['status' => 'complete', 'user_id' => Auth::user()->id])->paginate(10);
             return view('complaints.advanced.indexComplete', ['complaints' => $complaints]);
         }
     }

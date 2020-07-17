@@ -16,7 +16,8 @@
                     {{ session('status-success') }}
                 </div>
             @endif
-            <h1>My Complaint's</h1>
+            <h1>Pending Complaints</h1>
+            <x-complaint-status/>
         </div>
     </div>
     <div class="row justify-content-center">
