@@ -39,6 +39,7 @@
                         @endforeach
                         @if ($complaint->responses->count() == 0)
                             <p class="text-muted">Empty</p>
+                            <hr>
                         @endif
                         <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
                             @csrf
