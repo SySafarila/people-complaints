@@ -25,9 +25,11 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Complaints Get
 Route::get('/complaints', 'ComplaintsController@index')->name('complaints.index');
 Route::get('/complaints/create', 'ComplaintsController@create')->name('complaints.create');
+Route::get('/complaints/{complaint}', 'ComplaintsController@show')->name('complaints.show');
+Route::get('/complaints/edit/{complaint}', 'ComplaintsController@edit')->name('complaints.edit');
 // Complaints Post & etc
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
-Route::post('/complaints/{id}', 'ComplaintsController@update')->name('complaints.update');
+Route::post('/complaints/{complaint}', 'ComplaintsController@update')->name('complaints.update');
 
 // Files
 Route::prefix('/files')->group(function () {

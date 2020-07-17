@@ -20,7 +20,8 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        //
+        $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
+        return $complaints;
     }
 
     /**
@@ -74,7 +75,7 @@ class ComplaintsController extends Controller
      */
     public function show(Complaint $complaint)
     {
-        //
+        return view('complaints.show', ['complaint' => $complaint]);
     }
 
     /**
@@ -85,7 +86,7 @@ class ComplaintsController extends Controller
      */
     public function edit(Complaint $complaint)
     {
-        //
+        return view('complaints.edit', ['complaint' => $complaint]);
     }
 
     /**
@@ -97,7 +98,11 @@ class ComplaintsController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        //
+        $complaint->update([
+            'report' => $request->report
+        ]);
+
+        return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Your complaint was edited !');
     }
 
     /**

@@ -49,15 +49,19 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <h4 class="text-muted">Your last complaint's</h4>
+                <h4 class="text-muted">Your last 5 complaint's</h4>
                 @foreach ($complaints as $complaint)
-                    <div class="card border-0 shadow mb-2">
+                    <div class="card border-0 shadow mb-3">
+                        <a href="{{ route('complaints.show', $complaint->id) }}" class="stretched-link"></a>
                         <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}">
                         <div class="card-body">
                             <p class="m-0" style="white-space: pre;">{{ $complaint->report }}</p>
                         </div>
                     </div>
                 @endforeach
+                @if ($complaints->count() == 0)
+                    <p class="text-muted">Empty</p>
+                @endif
             </div>
         </div>
     </div>
