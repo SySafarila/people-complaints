@@ -54,6 +54,7 @@
                     <div class="card border-0 shadow mb-3">
                         <a href="{{ route('complaints.show', $complaint->id) }}" class="stretched-link"></a>
                         <span class="badge badge-light shadow-sm text-capitalize position-absolute rounded-0">{{ $complaint->status }}</span>
+                        <span class="badge badge-success shadow-sm position-absolute rounded-0" style="right: 0;">{{ $complaint->created_at->diffForHumans() }}</span>
                         <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}">
                         <div class="card-body">
                             <p class="m-0" style="white-space: pre-wrap;">{{ $complaint->report }}</p>
