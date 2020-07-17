@@ -24,6 +24,8 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 // Complaints Get
 Route::get('/complaints', 'ComplaintsController@index')->name('complaints.index');
+Route::get('/complaints/on-process', 'ComplaintsController@onProcess')->name('complaints.onProcess');
+Route::get('/complaints/complete', 'ComplaintsController@complete')->name('complaints.complete');
 Route::get('/complaints/create', 'ComplaintsController@create')->name('complaints.create');
 Route::get('/complaints/{complaint}', 'ComplaintsController@show')->name('complaints.show');
 Route::get('/complaints/edit/{complaint}', 'ComplaintsController@edit')->name('complaints.edit');

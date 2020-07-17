@@ -16,7 +16,7 @@
                     {{ session('status-success') }}
                 </div>
             @endif
-            <h1>Pending Complaints</h1>
+            <h1>On Process Complaints</h1>
             <x-complaint-status/>
         </div>
     </div>

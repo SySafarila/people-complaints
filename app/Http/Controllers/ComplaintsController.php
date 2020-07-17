@@ -32,6 +32,22 @@ class ComplaintsController extends Controller
         }
     }
 
+    public function onProcess()
+    {
+        if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaints = Complaint::where('status', 'on process')->paginate(10);
+            return view('complaints.advanced.indexOnProcess', ['complaints' => $complaints]);
+        }
+    }
+
+    public function complete()
+    {
+        if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaints = Complaint::where('status', 'complete')->paginate(10);
+            return view('complaints.advanced.indexComplete', ['complaints' => $complaints]);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
