@@ -20,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sysafarila.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Galada&display=swap">
 </head>
 <body>
     <div id="app">
@@ -28,7 +29,7 @@
                 <a href="{{ route('complaints.index') }}" class="material-icons navbar-toggler border-0">
                     assignment
                 </a>
-                <a class="navbar-brand mx-auto mr-md-2" href="{{ url('/') }}">
+                <a class="navbar-brand mx-auto mr-md-2" style="font-family: 'Galada', cursive;" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -53,11 +54,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}" style="{{ Request::is(['login']) ? 'color: rgb(97, 218, 251);' : '' }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}" style="{{ Request::is(['register']) ? 'color: rgb(97, 218, 251);' : '' }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

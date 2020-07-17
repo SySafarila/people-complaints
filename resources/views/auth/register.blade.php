@@ -52,7 +52,7 @@
                             <input id="password-confirm" type="password" class="form-control input-field" name="password_confirmation" required>
                             <label for="password-confirm" class="input-label">Confirm Password</label>
                         </div>
-                        <div class="d-flex justify-content-center mt-2">
+                        <div class="d-flex justify-content-center mt-3">
                             <button type="submit" class="btn btn-success mx-1">Register</button>
                             <button type="reset" class="btn btn-outline-danger mx-1">Reset</button>
                         </div>
