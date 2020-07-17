@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
                 @if (session('status-success'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status-success') }}
@@ -13,7 +13,7 @@
                     <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}">
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">
-                            <small class="badge badge-light text-capitalize shadow-sm">{{ $complaint->status }}</small>
+                            <small class="badge @if($complaint->status == 'complete') badge-success @else badge-light @endif text-capitalize shadow-sm">{{ $complaint->status }}</small>
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                         </div>
                         <p style="white-space: pre;">{{ $complaint->report }}</p>
@@ -52,6 +52,37 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
+                <div class="col-md-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <p class="font-weight-bold">Update Status</p>
+                            <form action="{{ route('complaints.setStatus', $complaint->id) }}" method="post">
+                                @csrf
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="pending" value="pending" @if($complaint->status == 'pending') checked @endif>
+                                    <label class="form-check-label" for="pending">
+                                      Pending
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="on process" value="on process" @if($complaint->status == 'on process') checked @endif>
+                                    <label class="form-check-label" for="on process">
+                                      On Process
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="complete" value="complete" @if($complaint->status == 'complete') checked @endif>
+                                    <label class="form-check-label" for="complete">
+                                      Complete
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-block btn-success mt-2">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

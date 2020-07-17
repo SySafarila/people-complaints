@@ -24,8 +24,11 @@ class ComplaintsController extends Controller
         if (Auth::user()->level == 'public') {
             $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
             return view('complaints.index', ['complaints' => $complaints]);
-        } else {
-            return abort(404);
+        }
+
+        if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaints = Complaint::where('status', 'pending')->paginate(10);
+            return view('complaints.advanced.indexPending', ['complaints' => $complaints]);
         }
     }
 
@@ -139,6 +142,18 @@ class ComplaintsController extends Controller
             ]);
 
             return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Your complaint was edited !');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function setStatus(Request $request, Complaint $complaint)
+    {
+        if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaint->update([
+                'status' => $request->status
+            ]);
+            return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Complaint was updated !');
         } else {
             return abort(404);
         }
