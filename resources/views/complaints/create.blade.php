@@ -26,7 +26,7 @@
                             <div class="form-group mt-2">
                                 <label for="photo" class="text-muted">Photo</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ old('photo') }}" required>
+                                    <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ old('photo') }}" accept="image/*" required>
                                     <label class="custom-file-label text-truncate" style="padding-right: 4.5rem;" for="photo">Choose image</label>
                                 </div>
                                 @error('photo')
