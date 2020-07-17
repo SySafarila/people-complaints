@@ -59,8 +59,11 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link material-icons" href="{{ route('complaints.create') }}" style="{{ Request::is(['complaints/create']) ? 'color: rgb(97, 218, 251);' : '' }}">add</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-block d-md-none" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-block d-md-none text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <a id="navbarDropdown" class="nav-link d-none d-md-block material-icons pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
