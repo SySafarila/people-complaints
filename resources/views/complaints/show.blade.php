@@ -28,7 +28,14 @@
                         <hr>
                         <p class="font-weight-bold">Responses</p>
                         @foreach ($complaint->responses as $response)
-                            <p class="bg-light shadow-sm rounded-pill px-2"><span class="text-muted">{{ $response->user->name }}: </span> {{ $response->response }}</p>
+                            {{-- <p class="bg-light shadow-sm rounded-pill px-2"><span class="text-muted">{{ $response->user->name }}: </span> {{ $response->response }}</p> --}}
+                            <div class="mb-1">
+                                <span class="text-muted">{{ $response->user->name }}</span>
+                                <br>
+                                <p class="m-0">{{ $response->response }}</p>
+                                <small class="text-muted">{{ $response->created_at->diffForHumans() }}</small>
+                            </div>
+                            <hr>
                         @endforeach
                         <hr>
                         <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">

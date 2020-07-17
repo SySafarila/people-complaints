@@ -30,7 +30,7 @@ Route::get('/complaints/edit/{complaint}', 'ComplaintsController@edit')->name('c
 // Complaints Post & etc
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
 Route::post('/complaints/{complaint}', 'ComplaintsController@update')->name('complaints.update');
-Route::post('/complaints/response/{id}', 'ComplaintsController@addResponse')->name('complaints.addResponse');
+Route::post('/complaints/response/{complaint}', 'ComplaintsController@addResponse')->name('complaints.addResponse');
 Route::delete('/complaints/{complaint}', 'ComplaintsController@destroy')->name('complaints.destroy');
 
 // Files
