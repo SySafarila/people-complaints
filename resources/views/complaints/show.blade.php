@@ -82,7 +82,15 @@
                                       Complete
                                     </label>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-block btn-success mt-2">Update</button>
+                                <button type="submit" id="buttonUpdate" class="btn btn-sm btn-block btn-success mt-2" onclick="update()">Update</button>
+                                <script>
+                                    function update() {
+                                        const buttonUpdate = document.getElementById('buttonUpdate');
+                                        console.log('clicked');
+                                        // buttonUpdate.classList.add('material-icons');
+                                        buttonUpdate.innerHTML = '<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span></div>'
+                                    }
+                                </script>
                             </form>
                         </div>
                     </div>
