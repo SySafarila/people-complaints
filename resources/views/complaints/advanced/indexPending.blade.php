@@ -30,7 +30,7 @@
                             <p>{{ $complaint->report }}</p>
                             <div class="d-flex justify-content-between">
                                 <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
-                                <span class="badge badge-pill @if($complaint->status == 'complete') badge-success @else badge-dark @endif">{{ $complaint->status }}</span>
+                                <span class="badge badge-pill text-capitalize @if($complaint->status == 'complete') badge-success @else badge-dark @endif">{{ $complaint->status }}</span>
                             </div>
                             @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                                 <small class="m-0 text-muted">Reporter : {{ $complaint->user->name }}</small>
