@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Complaint;
 use Illuminate\View\Component;
 
 class ComplaintStatus extends Component
@@ -23,6 +24,13 @@ class ComplaintStatus extends Component
      */
     public function render()
     {
-        return view('components.complaint-status');
+        $pending = Complaint::where('status', 'pending')->count();
+        $onProcess = Complaint::where('status', 'on process')->count();
+        $complete = Complaint::where('status', 'complete')->count();
+        return view('components.complaint-status', [
+            'pending' => $pending,
+            'onProcess' => $onProcess,
+            'complete' => $complete
+        ]);
     }
 }
