@@ -150,6 +150,9 @@ class ComplaintsController extends Controller
     public function setStatus(Request $request, Complaint $complaint)
     {
         if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $request->validate([
+                'status' => 'required|in:pending,on process,complete'
+            ]);
             $complaint->update([
                 'status' => $request->status
             ]);
