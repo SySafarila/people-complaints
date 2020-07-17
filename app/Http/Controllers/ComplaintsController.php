@@ -67,6 +67,16 @@ class ComplaintsController extends Controller
         }
     }
 
+    public function addResponse(Request $request, Complaint $complaint)
+    {
+        $complaint->responses()->create([
+            'user_id' => $request->user()->id,
+            'response' => $request->response
+        ]);
+
+        return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Response added !');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -75,7 +85,11 @@ class ComplaintsController extends Controller
      */
     public function show(Complaint $complaint)
     {
-        return view('complaints.show', ['complaint' => $complaint]);
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            return view('complaints.show', ['complaint' => $complaint]);
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -86,7 +100,11 @@ class ComplaintsController extends Controller
      */
     public function edit(Complaint $complaint)
     {
-        return view('complaints.edit', ['complaint' => $complaint]);
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            return view('complaints.edit', ['complaint' => $complaint]);
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -98,11 +116,15 @@ class ComplaintsController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        $complaint->update([
-            'report' => $request->report
-        ]);
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaint->update([
+                'report' => $request->report
+            ]);
 
-        return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Your complaint was edited !');
+            return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Your complaint was edited !');
+        } else {
+            return abort(404);
+        }
     }
 
     /**
