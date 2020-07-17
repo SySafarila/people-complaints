@@ -41,3 +41,11 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+.icon-animate {
+    transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.icon-animate:hover {
+    transform: rotate(90deg);
+    color: rgb(97, 218, 251) !important;
+}

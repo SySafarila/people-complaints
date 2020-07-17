@@ -60,7 +60,7 @@
                             @endif
                         @else
                             <li class="nav-item d-none d-md-block">
-                                <a class="nav-link material-icons" href="{{ route('complaints.create') }}" style="{{ Request::is(['complaints/create']) ? 'color: rgb(97, 218, 251);' : '' }}">add</a>
+                                <a class="nav-link material-icons icon-animate" href="{{ route('complaints.create') }}" style="{{ Request::is(['complaints/create']) ? 'color: rgb(97, 218, 251);' : '' }}">add</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle d-block d-md-none text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -91,6 +91,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <p class="text-muted text-center">&copy; SySafarila</p>
+        </footer>
     </div>
 </body>
 </html>
