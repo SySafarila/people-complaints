@@ -62,9 +62,11 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item d-none d-md-block">
-                                <a class="nav-link material-icons icon-animate" href="{{ route('complaints.create') }}" style="{{ Request::is(['complaints/create']) ? 'color: rgb(97, 218, 251);' : '' }}">add</a>
-                            </li>
+                            @if (Auth::user()->level == 'public')
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link material-icons icon-animate" href="{{ route('complaints.create') }}" style="{{ Request::is(['complaints/create']) ? 'color: rgb(97, 218, 251);' : '' }}">add</a>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle d-block d-md-none text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
