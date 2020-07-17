@@ -57,6 +57,7 @@
                             <button type="reset" class="btn btn-outline-danger mx-1">Reset</button>
                         </div>
                     </form>
+                    <p class="text-center mb-0 mt-2"><a href="{{ route('login') }}" class="text-decoration-none">Login</a></p>
                     @if ($errors->any())
                         <hr>
                         <ul class="pl-3 mt-1">
