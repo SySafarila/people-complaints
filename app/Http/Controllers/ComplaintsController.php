@@ -23,7 +23,7 @@ class ComplaintsController extends Controller
     {
         if (Auth::user()->level == 'public') {
             $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
-            return $complaints;
+            return view('complaints.index', ['complaints' => $complaints]);
         } else {
             return abort(404);
         }
