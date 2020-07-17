@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a href="#" class="material-icons navbar-toggler border-0">
+                <a href="{{ route('complaints.index') }}" class="material-icons navbar-toggler border-0">
                     assignment
                 </a>
                 <a class="navbar-brand mx-auto mr-md-2" href="{{ url('/') }}">
@@ -40,6 +40,9 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('complaints.index') }}">Complaints</a>
                         </li>
                     </ul>
 
