@@ -5,11 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card border-0 shadow">
-                <div class="card-body">
+                <div class="card-body p-4">
                     <h1 class="text-muted text-center">Login</h1>
+                    <div class="d-flex justify-content-center">
+                        <h1 class="material-icons text-primary" style="font-size: 4.5rem;">fingerprint</h1>
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="modern-form">
                             <input type="email" class="form-control input-field" name="email" required>
                             <label for="email" class="input-label">Email</label>

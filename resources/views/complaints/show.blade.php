@@ -31,8 +31,12 @@
                         @foreach ($complaint->responses as $response)
                             {{-- <p class="bg-light shadow-sm rounded-pill px-2"><span class="text-muted">{{ $response->user->name }}: </span> {{ $response->response }}</p> --}}
                             <div class="mb-1">
-                                <span class="text-muted">{{ $response->user->name }}</span>
-                                <br>
+                                <div class="d-flex align-items-center">
+                                    <p class="text-muted m-0">{{ $response->user->name }}</p>
+                                    @if ($response->user->level == 'admin' or $response->user->level == 'officer')
+                                        <span class="material-icons ml-1 text-primary" style="font-size: 14px;">verified</span>
+                                    @endif
+                                </div>
                                 <p class="m-0">{{ $response->response }}</p>
                                 <small class="text-muted">{{ $response->created_at->diffForHumans() }}</small>
                             </div>

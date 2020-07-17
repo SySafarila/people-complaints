@@ -38,12 +38,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard') }}" style="{{ Request::is(['dashboard']) ? 'color: rgb(97, 218, 251);' : '' }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('complaints.index') }}" style="{{ Request::is(['complaints', 'complaints/*']) ? 'color: rgb(97, 218, 251);' : '' }}">Complaints</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}" style="{{ Request::is(['dashboard']) ? 'color: rgb(97, 218, 251);' : '' }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('complaints.index') }}" style="{{ Request::is(['complaints', 'complaints/*']) ? 'color: rgb(97, 218, 251);' : '' }}">Complaints</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
