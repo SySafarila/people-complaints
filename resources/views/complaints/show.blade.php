@@ -37,7 +37,9 @@
                             </div>
                             <hr>
                         @endforeach
-                        <hr>
+                        @if ($complaint->responses->count() == 0)
+                            <p class="text-muted">Empty</p>
+                        @endif
                         <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
                             @csrf
                             <div class="modern-form mb-3">
