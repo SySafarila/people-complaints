@@ -22,11 +22,9 @@
                         @endif
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit this complaint</a>
-                            <form action="{{ route('complaints.destroy', $complaint->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                                Delete
+                            </button>
                         </div>
                         <hr>
                         <p class="font-weight-bold">Responses</p>
@@ -86,6 +84,30 @@
                     </div>
                 </div>
             @endif
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p class="m-0">Are you sure want to delete this complaint ?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('complaints.destroy', $complaint->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
         </div>
     </div>
 @endsection
