@@ -21,7 +21,7 @@
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
                         @endif
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit this complaint</a>
+                            <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit</a>
                             <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
                                 Delete
                             </button>
