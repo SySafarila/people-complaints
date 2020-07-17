@@ -48,14 +48,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h4 class="text-muted">Your last 5 complaint's</h4>
                 @foreach ($complaints as $complaint)
                     <div class="card border-0 shadow mb-3">
                         <a href="{{ route('complaints.show', $complaint->id) }}" class="stretched-link"></a>
+                        <span class="badge badge-light shadow-sm text-capitalize position-absolute rounded-0">{{ $complaint->status }}</span>
                         <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}">
                         <div class="card-body">
-                            <p class="m-0" style="white-space: pre;">{{ $complaint->report }}</p>
+                            <p class="m-0" style="white-space: pre-wrap;">{{ $complaint->report }}</p>
                         </div>
                     </div>
                 @endforeach
