@@ -17,6 +17,9 @@
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                         </div>
                         <p style="white-space: pre;">{{ $complaint->report }}</p>
+                        @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
+                            <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
+                        @endif
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit this complaint</a>
                             <form action="{{ route('complaints.destroy', $complaint->id) }}" method="post">
