@@ -76,18 +76,18 @@ class ComplaintsController extends Controller
         }
     }
 
-    public function addResponse(Request $request, Complaint $complaint)
+    public function addResponse(Request $request, $id)
     {
-        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
-            $complaint->responses()->create([
-                'user_id' => $request->user()->id,
-                'response' => $request->response
-            ]);
+        $request->validate([
+            'response' => 'required'
+        ]);
+        $complaint = Complaint::find($id);
+        $response = $complaint->responses()->create([
+            'response' => $request->response,
+            'user_id' => $request->user()->id
+        ]);
 
-            return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Response added !');
-        } else {
-            return abort(404);
-        }
+        return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Response added !');
     }
 
     /**

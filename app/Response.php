@@ -10,6 +10,11 @@ class Response extends Model
         'id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function complaint()
     {
         return $this->belongsTo('App\Complaint');

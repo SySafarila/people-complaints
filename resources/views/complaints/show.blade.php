@@ -25,6 +25,15 @@
                                 <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                             </form>
                         </div>
+                        <hr>
+                        <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
+                            @csrf
+                            <div class="modern-form mb-3">
+                                <textarea name="response" rows="4" class="form-control input-field @error('response') is-invalid @enderror" placeholder="Write your response here..."></textarea>
+                                <label for="name" class="input-label">Response</label>
+                            </div>
+                            <button type="submit" class="btn btn-success">Send</button>
+                        </form>
                     </div>
                 </div>
             </div>
