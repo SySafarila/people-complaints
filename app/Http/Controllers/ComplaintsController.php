@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ComplaintsController extends Controller
@@ -20,8 +21,12 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
-        return $complaints;
+        if (Auth::user()->level == 'public') {
+            $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
+            return $complaints;
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -31,8 +36,12 @@ class ComplaintsController extends Controller
      */
     public function create()
     {
-        $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(5);
-        return view('complaints.create', ['complaints' => $complaints]);
+        if (Auth::user()->level == 'public') {
+            $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(5);
+            return view('complaints.create', ['complaints' => $complaints]);
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -69,12 +78,16 @@ class ComplaintsController extends Controller
 
     public function addResponse(Request $request, Complaint $complaint)
     {
-        $complaint->responses()->create([
-            'user_id' => $request->user()->id,
-            'response' => $request->response
-        ]);
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $complaint->responses()->create([
+                'user_id' => $request->user()->id,
+                'response' => $request->response
+            ]);
 
-        return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Response added !');
+            return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Response added !');
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -135,6 +148,15 @@ class ComplaintsController extends Controller
      */
     public function destroy(Complaint $complaint)
     {
-        //
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            if (Storage::disk('local')->exists('photos/' . $complaint->photo) == true) {
+                Storage::disk('local')->delete('photos/' . $complaint->photo);
+            }
+            $complaint->delete();
+
+            return redirect()->route('complaints.index')->with('status-success', 'Your complaint was deleted !');
+        } else {
+            return abort(404);
+        }
     }
 }

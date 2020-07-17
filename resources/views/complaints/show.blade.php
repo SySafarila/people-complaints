@@ -17,7 +17,14 @@
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                         </div>
                         <p style="white-space: pre;">{{ $complaint->report }}</p>
-                        <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit this complaint</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit this complaint</a>
+                            <form action="{{ route('complaints.destroy', $complaint->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

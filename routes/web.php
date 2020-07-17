@@ -31,6 +31,7 @@ Route::get('/complaints/edit/{complaint}', 'ComplaintsController@edit')->name('c
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
 Route::post('/complaints/{complaint}', 'ComplaintsController@update')->name('complaints.update');
 Route::post('/complaints/add-response/{complaint}', 'ComplaintsController@addResponse')->name('complaints.addResponse');
+Route::delete('/complaints/{complaint}', 'ComplaintsController@destroy')->name('complaints.destroy');
 
 // Files
 Route::prefix('/files')->group(function () {
