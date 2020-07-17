@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #20232a;">
             <div class="container">
                 <a href="{{ route('complaints.index') }}" class="material-icons navbar-toggler border-0">
                     assignment
@@ -39,10 +39,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                            <a class="nav-link" href="{{ route('dashboard') }}" style="{{ Request::is(['dashboard']) ? 'color: rgb(97, 218, 251);' : '' }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('complaints.index') }}">Complaints</a>
+                            <a class="nav-link" href="{{ route('complaints.index') }}" style="{{ Request::is(['complaints', 'complaints/*']) ? 'color: rgb(97, 218, 251);' : '' }}">Complaints</a>
                         </li>
                     </ul>
 
