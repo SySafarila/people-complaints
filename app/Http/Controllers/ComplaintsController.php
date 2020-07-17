@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Complaint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ComplaintsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,8 @@ class ComplaintsController extends Controller
      */
     public function create()
     {
-        //
+        $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(5);
+        return view('complaints.create', ['complaints' => $complaints]);
     }
 
     /**
@@ -35,7 +42,28 @@ class ComplaintsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->level == 'public') {
+            $request->validate([
+                'report' => 'required|min:10|string',
+                'photo' => 'required|image|file|max:5000'
+            ], [
+                'photo.max' => 'Maximum size for Cover Image is 5MB.'
+            ]);
+
+            $photo = Str::random(10) . '.' . $request->photo->extension();
+            Complaint::create([
+                'report' => $request->report,
+                'photo' => $photo,
+                'user_id' => $request->user()->id,
+                'status' => 'pending'
+            ]);
+
+            $request->file('photo')->storeAs('photos', $photo);
+
+            return redirect()->route('complaints.create')->with('status-success', 'Your complaint sent !');
+        } else {
+            return abort(404);
+        }
     }
 
     /**

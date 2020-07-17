@@ -21,3 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+// Complaints Get
+Route::get('/complaints', 'ComplaintsController@index')->name('complaints.index');
+Route::get('/complaints/create', 'ComplaintsController@create')->name('complaints.create');
+// Complaints Post & etc
+Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
+Route::post('/complaints/{id}', 'ComplaintsController@update')->name('complaints.update');
+
+// Files
+Route::prefix('/files')->group(function () {
+    Route::get('/photo/{fileName}', 'FilesController@photo')->name('get.photo');
+});
