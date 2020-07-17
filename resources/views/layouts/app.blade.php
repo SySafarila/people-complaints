@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #20232a;">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm sticky-top" style="background-color: #20232a;">
             <div class="container">
                 <a href="{{ route('complaints.index') }}" class="material-icons navbar-toggler border-0">
                     assignment
