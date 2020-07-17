@@ -26,6 +26,11 @@
                             </form>
                         </div>
                         <hr>
+                        <p class="font-weight-bold">Responses</p>
+                        @foreach ($complaint->responses as $response)
+                            <p class="bg-light shadow-sm rounded-pill px-2"><span class="text-muted">{{ $response->user->name }}: </span> {{ $response->response }}</p>
+                        @endforeach
+                        <hr>
                         <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
                             @csrf
                             <div class="modern-form mb-3">
