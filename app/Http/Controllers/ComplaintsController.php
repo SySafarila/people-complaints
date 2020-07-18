@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Complaint;
+use App\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -196,6 +197,7 @@ class ComplaintsController extends Controller
             if (Storage::disk('local')->exists('photos/' . $complaint->photo) == true) {
                 Storage::disk('local')->delete('photos/' . $complaint->photo);
             }
+            $responses = Response::where('complaint_id', $complaint->id)->delete();
             $complaint->delete();
 
             return redirect()->route('complaints.index')->with('status-success', 'Your complaint was deleted !');
