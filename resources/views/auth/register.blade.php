@@ -12,27 +12,27 @@
                         <div class="form-row">
                             <div class="col">
                                 <div class="modern-form">
-                                    <input type="text" class="form-control input-field" name="name" required>
+                                    <input type="text" class="form-control input-field" name="name" value="{{ old('name') }}" required>
                                     <label for="name" class="input-label">Name</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="modern-form">
-                                    <input type="text" class="form-control input-field" name="username" required>
+                                    <input type="text" class="form-control input-field" name="username" value="{{ old('username') }}" required>
                                     <label for="username" class="input-label">Username</label>
                                 </div>
                             </div>
                         </div>
                         <div class="modern-form">
-                            <input type="email" class="form-control input-field" name="email" required>
+                            <input type="email" class="form-control input-field" name="email" value="{{ old('email') }}" required>
                             <label for="email" class="input-label">Email</label>
                         </div>
                         <div class="modern-form">
-                            <input type="number" class="form-control input-field" name="nik" required>
+                            <input type="number" class="form-control input-field" name="nik" value="{{ old('nik') }}" required>
                             <label for="nik" class="input-label">NIK</label>
                         </div>
                         <div class="modern-form">
-                            <input type="number" class="form-control input-field" name="phone" required>
+                            <input type="number" class="form-control input-field" name="phone" value="{{ old('phone') }}" required>
                             <label for="phone" class="input-label">Phone Number</label>
                         </div>
                         <div class="modern-form">

@@ -33,6 +33,14 @@
                             <button type="submit" class="btn btn-sm btn-success">Login</button>
                         </div>
                     </form>
+                    @if ($errors->any())
+                        <hr>
+                        <ul class="pl-3 mt-1">
+                            @foreach ($errors->all() as $error)
+                                <li class="text-danger">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
