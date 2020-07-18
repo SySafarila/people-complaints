@@ -42,7 +42,7 @@
                                         <span class="material-icons ml-1 text-primary" style="font-size: 14px;">verified</span>
                                     @endif
                                 </div>
-                                <p class="m-0">{{ $response->response }}</p>
+                                <p class="m-0">{{ $response->response }} @if(Auth::user()->id == $response->user->id) <a href="{{ route('responses.edit', ['complaint' => $complaint->id, 'response' => $response->id]) }}" class="text-decoration-none"><small>Edit</small></a> @endif</p>
                                 <small class="text-muted">{{ $response->created_at->diffForHumans() }}</small>
                             </div>
                             <hr>

@@ -42,3 +42,8 @@ Route::delete('/complaints/{complaint}', 'ComplaintsController@destroy')->name('
 Route::prefix('/files')->group(function () {
     Route::get('/photo/{fileName}', 'FilesController@photo')->name('get.photo');
 });
+
+// Responses
+Route::get('/complaint/{complaint}/response/{response}', 'ResponsesController@edit')->name('responses.edit');
+
+Route::post('/complaint/{complaint}/response/{response}', 'ResponsesController@update')->name('response.update');
