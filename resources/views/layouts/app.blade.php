@@ -46,6 +46,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('complaints.index') }}" style="{{ Request::is(['complaints', 'complaints/*']) ? 'color: rgb(97, 218, 251);' : '' }}">Complaints</a>
                             </li>
+                            @if (Auth::user()->level == 'admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users.index') }}" style="{{ Request::is(['users', 'users/*']) ? 'color: rgb(97, 218, 251);' : '' }}">Users</a>
+                                </li>
+                            @endif
                         @endauth
                     </ul>
 
