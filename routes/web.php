@@ -51,3 +51,5 @@ Route::post('/complaint/{complaint}/response/{response}', 'ResponsesController@u
 // Users
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+
+Route::post('/users/{user}', 'UsersController@update')->name('users.update');

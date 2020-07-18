@@ -19,7 +19,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(20);
-        return $users;
+        $no = 1;
+        return view('users.index', ['users' => $users, 'no' => $no]);
     }
 
     /**
@@ -51,7 +52,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -74,7 +75,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'level' => 'required|in:admin,officer,public'
+        ]);
+        $user->update([
+            'level' => $request->level
+        ]);
+        return redirect()->route('users.show', $user->id)->with('status-success', 'User Updated !');
     }
 
     /**
