@@ -62,7 +62,7 @@ class ComplaintsController extends Controller
     public function create()
     {
         if (Auth::user()->level == 'public') {
-            $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(5);
+            $complaints = Complaint::where('user_id', Auth::user()->id)->latest()->paginate(5);
             return view('complaints.create', ['complaints' => $complaints]);
         } else {
             return abort(404);

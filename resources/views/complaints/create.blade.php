@@ -57,7 +57,7 @@
                         <span class="badge badge-success shadow-sm position-absolute rounded-0" style="right: 0;">{{ $complaint->created_at->diffForHumans() }}</span>
                         <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}">
                         <div class="card-body">
-                            <p class="m-0" style="white-space: pre-wrap;">{{ $complaint->report }}</p>
+                            <p class="m-0" style="white-space: pre-wrap;">{{ Str::limit($complaint->report, 50, '...') }}</p>
                         </div>
                     </div>
                 @endforeach

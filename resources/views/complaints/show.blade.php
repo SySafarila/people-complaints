@@ -22,9 +22,12 @@
                         @endif
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit</a>
-                            <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
-                                Delete
-                            </button>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-success" onclick="window.print()">Print</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                         <hr>
                         <p class="font-weight-bold">Responses</p>
