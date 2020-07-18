@@ -102,7 +102,7 @@
             @yield('content')
         </main>
         <footer>
-            <p class="text-muted text-center">&copy; SySafarila</p>
+            <p class="text-center">&copy; <a href="https://github.com/sysafarila" class="text-muted text-decoration-none">SySafarila</a></p>
         </footer>
     </div>
 </body>
