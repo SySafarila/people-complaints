@@ -14,7 +14,7 @@
         <main class="align-items-center d-flex justify-content-center" style="height: 90vh;">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <h1 class="text-center">Welcome To Pengaduan Masyarakat</h1>
+                    <h1 class="text-center">Welcome To Public Complaints</h1>
                     <p class="text-center text-muted">Tell Us what is Your problem...</p>
                     <div class="d-flex justify-content-center">
                         @auth
