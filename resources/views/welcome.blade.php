@@ -15,9 +15,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <h1 class="text-center">Welcome To Pengaduan Masyarakat</h1>
-                    <p class="text-center text-muted">Tell Us what is Your problem.</p>
+                    <p class="text-center text-muted">Tell Us what is Your problem...</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('dashboard') }}" class="btn btn-success">Getting Started</a>
+                        @auth
+                            <a href="{{ route('dashboard') }}" class="btn btn-success">Go To Dashboard</a>
+                        @endauth
+                        @guest
+                            <a href="{{ route('dashboard') }}" class="btn btn-success">Getting Started</a>  
+                        @endguest
                     </div>
                 </div>
             </div>
