@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Complaint;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -92,6 +93,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        $complaint = Complaint::where('user_id', $user->id)->delete();
         $user->delete();
         return redirect()->route('users.index')->with('status-success', 'User deleted !');
     }
