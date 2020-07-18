@@ -16,11 +16,11 @@
                             <small class="badge @if($complaint->status == 'complete') badge-success @else badge-light @endif text-capitalize shadow-sm">{{ $complaint->status }}</small>
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                         </div>
-                        <p style="white-space: pre;">{{ $complaint->report }}</p>
+                        <p style="white-space: pre-wrap;">{{ $complaint->report }}</p>
                         @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
                         @endif
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between d-print-none">
                             <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit</a>
                             <div>
                                 <button type="button" class="btn btn-sm btn-success" onclick="window.print()">Print</button>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
-                <div class="col-md-4">
+                <div class="col-md-4 d-print-none">
                     <div class="card border-0 shadow">
                         <div class="card-body">
                             <p class="font-weight-bold">Update Status</p>

@@ -29,9 +29,11 @@ Route::get('/complaints/complete', 'ComplaintsController@complete')->name('compl
 Route::get('/complaints/create', 'ComplaintsController@create')->name('complaints.create');
 Route::get('/complaints/{complaint}', 'ComplaintsController@show')->name('complaints.show');
 Route::get('/complaints/edit/{complaint}', 'ComplaintsController@edit')->name('complaints.edit');
+Route::get('/complaints/edit/photo/{complaint}', 'ComplaintsController@editPhoto')->name('complaints.editPhoto');
 // Complaints Post & etc
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
 Route::post('/complaints/{complaint}', 'ComplaintsController@update')->name('complaints.update');
+Route::post('/complaints/photo/{complaint}', 'ComplaintsController@updatePhoto')->name('complaints.updatePhoto');
 Route::post('/complaints/response/{complaint}', 'ComplaintsController@addResponse')->name('complaints.addResponse');
 Route::post('/complaints/status/{complaint}', 'ComplaintsController@setStatus')->name('complaints.setStatus');
 Route::delete('/complaints/{complaint}', 'ComplaintsController@destroy')->name('complaints.destroy');

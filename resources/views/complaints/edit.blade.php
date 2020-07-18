@@ -7,6 +7,10 @@
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <h1 class="text-center text-muted mb-4">Edit Your Complaint</h1>
+                        <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" alt="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid mb-3">
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('complaints.editPhoto', $complaint->id) }}" class="text-decoration-none">Edit photo</a>
+                        </div>
                         <form action="{{ route('complaints.update', $complaint->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="modern-form mb-3">

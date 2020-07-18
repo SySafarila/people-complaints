@@ -150,6 +150,15 @@ class ComplaintsController extends Controller
         }
     }
 
+    public function editPhoto(Complaint $complaint)
+    {
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            return view('complaints.editPhoto', ['complaint' => $complaint]);
+        } else {
+            return abort(404);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -165,6 +174,30 @@ class ComplaintsController extends Controller
             ]);
 
             return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Your complaint was edited !');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function updatePhoto(Request $request, Complaint $complaint)
+    {
+        // return $request;
+        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+            $request->validate([
+                'photo' => 'required|image|file|max:5000'
+            ], [
+                'photo.max' => 'Maximum size for Cover Image is 5MB.'
+            ]);
+            if (Storage::disk('local')->exists('photos/' . $complaint->photo) == true) {
+                Storage::disk('local')->delete('photos/' . $complaint->photo);
+            }
+            $photo = Str::random(10) . '.' . $request->photo->extension();
+            Complaint::where('id', $complaint->id)->update([
+                'photo' => $photo
+            ]);
+            $request->file('photo')->storeAs('photos', $photo);
+
+            return redirect()->route('complaints.show', $complaint->id)->with('status-success', 'Photo was updated !');
         } else {
             return abort(404);
         }
