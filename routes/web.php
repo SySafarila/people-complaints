@@ -47,3 +47,7 @@ Route::prefix('/files')->group(function () {
 Route::get('/complaint/{complaint}/response/{response}', 'ResponsesController@edit')->name('responses.edit');
 
 Route::post('/complaint/{complaint}/response/{response}', 'ResponsesController@update')->name('response.update');
+
+// Users
+Route::get('/users', 'UsersController@index')->name('users.index');
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');
