@@ -21,7 +21,9 @@
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
                         @endif
                         <div class="d-flex justify-content-between d-print-none">
-                            <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit</a>
+                            @if (Auth::user()->level == 'public')
+                                <a href="{{ route('complaints.edit', $complaint->id) }}" class="text-decoration-none">Edit</a>
+                            @endif
                             <div>
                                 <button type="button" class="btn btn-sm btn-success" onclick="window.print()">Print</button>
                                 <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
@@ -49,7 +51,7 @@
                             <p class="text-muted">Empty</p>
                             <hr>
                         @endif
-                        <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
+                        <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post" class="d-print-none">
                             @csrf
                             <div class="modern-form mb-3">
                                 <textarea name="response" rows="4" class="form-control input-field @error('response') is-invalid @enderror" placeholder="Write your response here..."></textarea>

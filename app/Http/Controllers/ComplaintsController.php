@@ -143,7 +143,7 @@ class ComplaintsController extends Controller
      */
     public function edit(Complaint $complaint)
     {
-        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+        if (Auth::user()->id == $complaint->user->id) {
             return view('complaints.edit', ['complaint' => $complaint]);
         } else {
             return abort(404);
@@ -152,7 +152,7 @@ class ComplaintsController extends Controller
 
     public function editPhoto(Complaint $complaint)
     {
-        if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
+        if (Auth::user()->id == $complaint->user->id) {
             return view('complaints.editPhoto', ['complaint' => $complaint]);
         } else {
             return abort(404);
@@ -181,7 +181,6 @@ class ComplaintsController extends Controller
 
     public function updatePhoto(Request $request, Complaint $complaint)
     {
-        // return $request;
         if (Auth::user()->id == $complaint->user->id or Auth::user()->level == 'admin' or Auth::user()->level == 'officer') {
             $request->validate([
                 'photo' => 'required|image|file|max:5000'
