@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if (session('status-success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status-success') }}
+                    </div>
+                @endif
                 <div class="card border-0 shadow">
                     <div class="card-body pb-0">
                         <div class="table-responsive">

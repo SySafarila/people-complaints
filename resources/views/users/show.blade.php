@@ -38,7 +38,12 @@
                                   Public
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-success btn-sm mt-2">Update</button>
+                            <button type="submit" class="btn btn-success btn-sm btn-block my-2">Update</button>
+                        </form>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-block btn-outline-danger">Delete</button>
                         </form>
                     </div>
                 </div>
